@@ -1,5 +1,5 @@
 package control;
-
+import presentacion.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,54 +11,11 @@ import java.nio.file.Paths;
 import static java.nio.file.StandardOpenOption.*;
 import javax.sound.midi.Patch;
 
-import caballos.Caballo;
+import modelo.*;
 
 public class Principal {
 	
-	public static void escribirCaballo(Caballo caballo) {
-		
-		String fila = caballo.toString();
-		Path file = Paths.get("ficheros/caballos.txt");
-		Charset charset = Charset.forName("UTF-8");
-		String s = "vamos a añadir una linea";
-		OpenOption[] options = new OpenOption[2];
-		options[0]=APPEND;
-		options[1]=CREATE;
-		
-		try(BufferedWriter writer = Files.newBufferedWriter(file, charset,options)) {
-			
-			writer.newLine();
-			writer.write(fila,0,fila.length());
-			writer.close();
-			
-		} catch (IOException x) {
-			System.err.format("IOException: &s&n", x);
-		}				
-		
-	}//escribirCaballo
-	
-	public static void leerCaballo() throws IOException {
-		
-		Path file = Paths.get("ficheros/caballos.txt");
-		Charset charset = Charset.forName("UTF-8");
-		BufferedReader reader = null;
 
-		try {
-			reader = Files.newBufferedReader(file,charset);
-			String fila = null;
-			while((fila = reader.readLine()) != null) {
-				System.out.println(fila);
-			}
-			
-		}catch(IOException x) {
-			System.err.format("IOException: %s%n", x);
-		} finally {
-			if(reader != null) {
-				reader.close();
-			}
-		}
-		
-	}
 	
 	
 	public static void main(String[] args) throws IOException {
@@ -70,7 +27,20 @@ public class Principal {
 		/*escribirCaballo(caballo1);
 		escribirCaballo(caballo2);
 		escribirCaballo(caballo3);*/
-		leerCaballo();
+		
+		LecturaEscritura.leerCaballo();
+		
+		EnlaceBD enlaceBD = new EnlaceBD();
+		
+		
+		enlaceBD.insertarCaballo(caballo1.getIdCaballo(), caballo1.getNombreCaballo(), caballo1.getRaza(), caballo1.getColor());
+		enlaceBD.insertarCaballo(caballo2.getIdCaballo(), caballo2.getNombreCaballo(), caballo2.getRaza(), caballo2.getColor());
+		String query = "Select * from caballos";
+		
+		enlaceBD.consultarCaballo(query);
+		LecturaEscritura.escribirCaballoV2(query);
+		
+		
 		
 	}
 

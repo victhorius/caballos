@@ -1,4 +1,4 @@
-package caballos;
+package modelo;
 
 public class Caballo {
 	

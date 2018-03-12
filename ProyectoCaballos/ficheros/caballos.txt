@@ -2,3 +2,6 @@
 vamos a añadir una linea
 vamos a añadir una linea
 Caballo [idCaballo=1, nombreCaballo=PEPE, raza=andaluz, color=marron]
+idCaballo:1  nombre:PEPE raza: andaluz color:marron
+idCaballo:1  nombre:PEPE raza: andaluz color:marron
+idCaballo:2  nombre:ARTURO raza: arabe color:blanco
