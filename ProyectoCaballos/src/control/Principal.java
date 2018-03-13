@@ -33,14 +33,15 @@ public class Principal {
 		EnlaceBD enlaceBD = new EnlaceBD();
 		
 		
-		enlaceBD.insertarCaballo(caballo1.getIdCaballo(), caballo1.getNombreCaballo(), caballo1.getRaza(), caballo1.getColor());
-		enlaceBD.insertarCaballo(caballo2.getIdCaballo(), caballo2.getNombreCaballo(), caballo2.getRaza(), caballo2.getColor());
+		//enlaceBD.insertarCaballo(caballo1.getIdCaballo(), caballo1.getNombreCaballo(), caballo1.getRaza(), caballo1.getColor());
+		//enlaceBD.insertarCaballo(caballo2.getIdCaballo(), caballo2.getNombreCaballo(), caballo2.getRaza(), caballo2.getColor());
 		String query = "Select * from caballos";
 		
 		enlaceBD.consultarCaballo(query);
-		LecturaEscritura.escribirCaballoV2(query);
 		
+		//LecturaEscritura.escribirCaballoV2(query);
 		
+		LecturaEscritura.leerFicheroaBD();
 		
 	}
 
