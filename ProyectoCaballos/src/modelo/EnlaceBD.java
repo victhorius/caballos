@@ -142,7 +142,30 @@ public class EnlaceBD {
             return resultados;
 	}
 		
+		public void consultarCaballoV2(String atributo, String nombre){
+			
+			
+			Connection con=null;
+			Statement stmt=null;
+			try {
+				
+				con=conectar(con);
+				
+				stmt=con.createStatement();
+				ResultSet rs = stmt.executeQuery ("select "+ atributo+" from caballos where nombreCaballo = '"+nombre+"';");
+				while (rs.next())
+		            {
+		               if(atributo.equals("idCaballo")) {
+		            	   System.out.println ("idCaballo:"+rs.getInt (1));
+		               }
+		            }
+				 con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		
-
+		
+		}
 }

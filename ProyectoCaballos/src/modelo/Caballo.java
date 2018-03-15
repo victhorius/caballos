@@ -9,6 +9,7 @@ public class Caballo {
 	
 	private static int contCaballo;
 
+		
 	public Caballo(String nombreCaballo, String raza, String color) {
 		
 		contCaballo++;

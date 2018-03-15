@@ -1,0 +1,6 @@
+
+idCaballo:1  nombre:PEPE raza: andaluz color:marron
+idCaballo:2  nombre:ARTURO raza: arabe color:blanco
+idCaballo:3  nombre:PEPE raza: andaluz color:azul
+idCaballo:4  nombre:PEPE raza: romano color:azul
+idCaballo:5  nombre:PEPE raza: andaluz color:azul

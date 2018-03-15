@@ -63,14 +63,14 @@ public class LecturaEscritura {
 
 	}// leerCaballo
 
-	public static void escribirCaballoV2(String resQuery) throws IOException {
+	public static void descargarCaballos(String resQuery) throws IOException {
 		
 		EnlaceBD enlace = new EnlaceBD();
 		ArrayList<String> resultados = new ArrayList<String>();
 				
 		
 		resultados = enlace.consultarCaballov2(resQuery);
-		Path file = Paths.get("ficheros/caballos.txt");
+		Path file = Paths.get("ficheros/listaCaballos.txt");
 		Charset charset = Charset.forName("UTF-8");
 		
 		OpenOption[] options = new OpenOption[2];
@@ -92,7 +92,14 @@ public class LecturaEscritura {
 			System.err.format("IOException: &s&n", x);
 		}
 
-	}// escribirCaballo
+	}
+	
+	
+	
+	
+	
+	
+	// escribirCaballo
 
 
 	public static void leerFicheroaBD() throws IOException {
