@@ -139,18 +139,17 @@ public class LecturaEscritura {
 		
 		for (String linea:registros) {
 			
-			String[] filas = new String[4];
+			String[] filas = new String[3];
 			
 			filas = linea.split(";");
 			
-			int idCaballo =  Integer.parseInt(filas[0]);
-			String nombre = filas[1];
-			String raza = filas[2];
-			String color = filas[3];
+			String nombre = filas[0];
+			String raza = filas[1];
+			String color = filas[2];
 			
 			EnlaceBD enlaceBD = new EnlaceBD();
 			
-			enlaceBD.insertarCaballo(idCaballo, nombre, raza, color);
+			enlaceBD.insertarCaballo(nombre, raza, color);
 		}
 		
 		/*Otra forma de hacerlo

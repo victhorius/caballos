@@ -33,7 +33,7 @@ public class EnlaceBD {
 	}	
 	
 	
-	public void insertarCaballo(int idCaballo,String nombre, String raza, String color){
+	public void insertarCaballo(String nombre, String raza, String color){
 
 		Connection con=null;
 		con=conectar(con);
@@ -41,11 +41,10 @@ public class EnlaceBD {
 		
 		
 			try {
-				stmt=con.prepareStatement("insert into caballos values (?,?,?,?)");
-				stmt.setInt(1,idCaballo);
-				stmt.setString(2,nombre);
-				stmt.setString(3,raza);
-				stmt.setString(4,color);
+				stmt=con.prepareStatement("insert into caballos(nombreCaballo,raza,color) values (?,?,?)");
+				stmt.setString(1,nombre);
+				stmt.setString(2,raza);
+				stmt.setString(3,color);
 				int filaInsertada=stmt.executeUpdate();
 				if (filaInsertada>0) System.out.println("fila insertada");
 				con.close();
@@ -55,8 +54,7 @@ public class EnlaceBD {
 				e.printStackTrace();
 			}
 			
-		
-		
+				
 	}
 	
 	/*
@@ -114,6 +112,35 @@ public class EnlaceBD {
             
 	}
 		
+		
+		public int contarCaballos(String query){
+			
+			int caballosTotales = 0; 
+			
+			Connection con=null;
+			Statement stmt=null;
+			try {
+				
+				con=conectar(con);
+				
+				stmt=con.createStatement();
+				ResultSet rs = stmt.executeQuery (query);
+				while (rs.next())
+		            {
+		                System.out.println ("Caballos totales:"+rs.getInt (1) );
+		               caballosTotales =  rs.getInt (1);
+		            }
+				 con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return caballosTotales;
+            
+            // Se crea un Statement, para realizar la consulta
+            
+	}
+		
 		public ArrayList<String> consultarCaballov2(String query){
 			
 			ArrayList<String> resultados = new ArrayList<String>();
@@ -160,6 +187,32 @@ public class EnlaceBD {
 		               }
 		            }
 				 con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+		
+		}
+		
+		
+		public void borrarCaballo(String nombre){
+			
+		
+			Connection con=null;
+			Statement stmt=null;
+			try {
+				
+				con=conectar(con);
+				
+				stmt=con.createStatement();
+				int rs = stmt.executeUpdate ("delete from caballos where nombreCaballo = '" + nombre + "';");
+				
+					if(rs>0) {
+						System.out.println("fila eliminada");
+		            }
+					con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

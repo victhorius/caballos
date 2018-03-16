@@ -51,6 +51,10 @@ public class Menu {
 	
 	public void lanzarMenuAdministrador () throws IOException {
 		
+		String nombre;
+		String raza;
+		String color;
+		
 		Scanner scan = new Scanner(System.in);
 		int opcion = 0;
 		
@@ -62,24 +66,29 @@ public class Menu {
 		
 		switch (opcion) {
 		case 1:
+						
 			
-			//consulta a la base de datos,contar caballos y sumar uno para asignarle un id automatico
-			
-			
-			
-			
-			int idCaballo;
-			
-			
-			String nombre;
-			String raza;
-			String color;
-			
-			
-			
+			System.out.println("Nombre");
+			nombre = scan.next();
+			System.out.println("raza");
+			raza = scan.next();
+			System.out.println("color");
+			color = scan.next();
+						
+			enlaceBD.insertarCaballo(nombre, raza, color);
+										
 			break;
 
-		default:
+
+			
+		    case 2:
+		    			    	
+		    	System.out.println("Nombre del caballo a borrar");
+		    	
+		    	nombre = scan.next();
+		    	
+		    	enlaceBD.borrarCaballo(nombre);
+		    	
 			break;
 		}
 		

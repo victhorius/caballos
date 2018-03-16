@@ -44,14 +44,14 @@ public class Principal {
 		String nombre ="PEPE";
 		
 		//enlaceBD.consultarCaballo(query);
-		enlaceBD.consultarCaballoV2(idNombre, nombre);
+		//enlaceBD.consultarCaballoV2(idNombre, nombre);
 		
 		/*LecturaEscritura.escribirCaballoV2(query);
 		
 		LecturaEscritura.leerFicheroaBD();*/
 		
+		enlaceBD.contarCaballos("select count(*) from caballos");
 		
-		/*
 		Scanner scan = new Scanner(System.in);
 		int tipoUsuario = 0 ;
 		
@@ -61,9 +61,15 @@ public class Principal {
 		
 		Menu menu  = new Menu();
 		
-		menu.lanzarMenuUsuario();
+		if (tipoUsuario == 1) menu.lanzarMenuUsuario();
 		
-		*/
+		else if(tipoUsuario == 2) menu.lanzarMenuAdministrador();
+		
+		else System.out.println("Opcion incorrecta");
+		
+		
+		enlaceBD.contarCaballos("select count(*) from caballos");
+		
 	}
 
 }
