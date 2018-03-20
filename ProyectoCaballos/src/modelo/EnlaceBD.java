@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class EnlaceBD {
 
 	public EnlaceBD() {};
+	
+	
 	public static Connection conectar(Connection c) {
 		String sDriver="com.mysql.jdbc.Driver";
 		String sURL="jdbc:mysql://localhost:3306/caballos";
@@ -25,12 +27,12 @@ public class EnlaceBD {
 			if (c!=null) System.out.println("Conectado a la base de datos");
 		
 	
-	} catch (InstantiationException | IllegalAccessException | ClassNotFoundException |SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		} 
+		catch (InstantiationException | IllegalAccessException | ClassNotFoundException |SQLException e) {
+			e.printStackTrace();
+		}
 		return c;
-	}	
+	}//conectar()	
 	
 	
 	public void insertarCaballo(String nombre, String raza, String color){
@@ -38,24 +40,22 @@ public class EnlaceBD {
 		Connection con=null;
 		con=conectar(con);
 		PreparedStatement stmt=null;
+				
+		try {
+			stmt=con.prepareStatement("insert into caballos(nombreCaballo,raza,color) values (?,?,?)");
+			stmt.setString(1,nombre);
+			stmt.setString(2,raza);
+			stmt.setString(3,color);
+			int filaInsertada=stmt.executeUpdate();
 		
-		
-			try {
-				stmt=con.prepareStatement("insert into caballos(nombreCaballo,raza,color) values (?,?,?)");
-				stmt.setString(1,nombre);
-				stmt.setString(2,raza);
-				stmt.setString(3,color);
-				int filaInsertada=stmt.executeUpdate();
 				if (filaInsertada>0) System.out.println("fila insertada");
-				con.close();
+					con.close();
 			} 
 			catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 				
-	}
+	}//insertarCaballo
 	
 	/*
 	public void actualizarDato(int id, String str ){
@@ -86,60 +86,52 @@ public class EnlaceBD {
 	
 	*/
 		
-		public void consultarCaballo(String query){
-			
+	public void consultarCaballo(String query){	
 						
-			Connection con=null;
-			Statement stmt=null;
-			try {
-				
-				con=conectar(con);
-				
-				stmt=con.createStatement();
-				ResultSet rs = stmt.executeQuery (query);
-				while (rs.next())
-		            {
-		                System.out.println ("idCaballo:"+rs.getInt (1) + "  nombre:" +rs.getString (2)+ 
-		                    " raza: "+rs.getString(3)+" color:"+rs.getString(4) );
-		            }
-				 con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+		Connection con=null;
+		Statement stmt=null;
+
+		try {		
+			con=conectar(con);
+			stmt=con.createStatement();
+			ResultSet rs = stmt.executeQuery (query);
+			
+			while (rs.next()) {
+				System.out.println ("idCaballo: " + rs.getInt (1) + "  nombre: "  + rs.getString (2) + 
+		                    " raza: "+rs.getString(3)+" color: "+rs.getString(4) );
+			}
+			 con.close();
+		} 
+		catch (SQLException e) {
 				e.printStackTrace();
 			}
             
-            // Se crea un Statement, para realizar la consulta
-            
-	}
+	}//consultarCaballo
 		
 		
-		public int contarCaballos(String query){
+	public int contarCaballos(String query){
 			
-			int caballosTotales = 0; 
+		int caballosTotales = 0; 		
+		Connection con=null;
+		Statement stmt=null;
+
+		try {		
+			con=conectar(con);		
+			stmt=con.createStatement();
+			ResultSet rs = stmt.executeQuery (query);
 			
-			Connection con=null;
-			Statement stmt=null;
-			try {
-				
-				con=conectar(con);
-				
-				stmt=con.createStatement();
-				ResultSet rs = stmt.executeQuery (query);
-				while (rs.next())
-		            {
-		                System.out.println ("Caballos totales:"+rs.getInt (1) );
-		               caballosTotales =  rs.getInt (1);
-		            }
-				 con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while (rs.next()) {
+				System.out.println ("Caballos totales:"+rs.getInt (1) );
+				caballosTotales =  rs.getInt (1);
 			}
-			return caballosTotales;
-            
-            // Se crea un Statement, para realizar la consulta
-            
-	}
+			 con.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return caballosTotales;
+                        
+	}//contarCaballos
 		
 		public ArrayList<String> consultarCaballov2(String query){
 			
@@ -198,7 +190,6 @@ public class EnlaceBD {
 		
 		
 		public void borrarCaballo(String nombre){
-			
 		
 			Connection con=null;
 			Statement stmt=null;
@@ -218,7 +209,7 @@ public class EnlaceBD {
 				e.printStackTrace();
 			}
 		
+		}//borrarCaballo
 		
 		
-		}
 }

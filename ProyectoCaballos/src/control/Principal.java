@@ -22,19 +22,18 @@ public class Principal {
 	
 	public static void main(String[] args) throws IOException {
 		
-		/*
-		
+		/*	
 		Caballo caballo1 = new Caballo("PEPE", "andaluz", "marron");
 		Caballo caballo2 = new Caballo("ARTURO","arabe","blanco");
 		Caballo caballo3 = new Caballo("MANUEL","nordico","negro");
 				
 		/*escribirCaballo(caballo1);
 		escribirCaballo(caballo2);
-		escribirCaballo(caballo3);
-		
+		escribirCaballo(caballo3);		
 		LecturaEscritura.leerCaballo();*/
 		
 		EnlaceBD enlaceBD = new EnlaceBD();
+		EnlaceBBDDV2 enBD = new EnlaceBBDDV2();
 		
 		
 		//enlaceBD.insertarCaballo(caballo1.getIdCaballo(), caballo1.getNombreCaballo(), caballo1.getRaza(), caballo1.getColor());
@@ -50,25 +49,20 @@ public class Principal {
 		
 		LecturaEscritura.leerFicheroaBD();*/
 		
-		enlaceBD.contarCaballos("select count(*) from caballos");
+		//enlaceBD.contarCaballos("select count(*) from caballos");
 		
 		Scanner scan = new Scanner(System.in);
 		int tipoUsuario = 0 ;
 		
 		System.out.println("Introduce 1 para entrar como usuario, 2 para entrar como administrador");
-		
 		tipoUsuario = scan.nextInt();
 		
 		Menu menu  = new Menu();
 		
-		if (tipoUsuario == 1) menu.lanzarMenuUsuario();
-		
+		//Selecciona el tipo de usuario
+		if (tipoUsuario == 1) menu.lanzarMenuUsuario();		
 		else if(tipoUsuario == 2) menu.lanzarMenuAdministrador();
-		
 		else System.out.println("Opcion incorrecta");
-		
-		
-		enlaceBD.contarCaballos("select count(*) from caballos");
 		
 	}
 
