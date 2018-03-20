@@ -121,7 +121,7 @@ public class EnlaceBD {
 			ResultSet rs = stmt.executeQuery (query);
 			
 			while (rs.next()) {
-				System.out.println ("Caballos totales:"+rs.getInt (1) );
+				//System.out.println ("Caballos totales:"+rs.getInt (1) );
 				caballosTotales =  rs.getInt (1);
 			}
 			 con.close();

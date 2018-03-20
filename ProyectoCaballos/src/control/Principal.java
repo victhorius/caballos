@@ -64,6 +64,8 @@ public class Principal {
 		else if(tipoUsuario == 2) menu.lanzarMenuAdministrador();
 		else System.out.println("Opcion incorrecta");
 		
+		
+		
 	}
 
 }
