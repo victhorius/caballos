@@ -2,6 +2,7 @@ package control;
 import java.io.IOException;
 import java.util.*;
 
+import modelo.Carrera;
 import modelo.EnlaceBBDDV2;
 import modelo.EnlaceBD;
 import presentacion.LecturaEscritura;
@@ -9,6 +10,7 @@ import presentacion.LecturaEscritura;
 public class Menu {
 	
 	
+	/**Si se selecciona la opción 1 abre el menú de usuario.**/
 	public void lanzarMenuUsuario() throws IOException {
 					
 		Scanner scan = new Scanner(System.in);
@@ -44,7 +46,7 @@ public class Menu {
 			
 		break;
 		
-		/** CONSULTAR CARRERAS?? **/
+		//Apostar a un caballo
 		case 3:
 					
 
@@ -56,6 +58,7 @@ public class Menu {
 	}//lanzarMenuUsuario()
 	
 	
+	/**Si se selecciona la opción 2 abre el menú de administrador**/
 	public void lanzarMenuAdministrador () throws IOException {
 		
 		String nombre;
@@ -66,11 +69,11 @@ public class Menu {
 		Scanner scan = new Scanner(System.in);
 		int opcion = 0;
 		
-		System.out.println("1. Agregar caballo\n 2. Borrar caballo");
+		System.out.println("1. Agregar caballo\n2. Borrar caballo\n3.Generar carrera");
 		
 		opcion = scan.nextInt();
 		
-		EnlaceBD enlaceBD = new EnlaceBD();
+		//EnlaceBD enlaceBD = new EnlaceBD();
 		EnlaceBBDDV2 enBD = new EnlaceBBDDV2();//Nuevo fichero de Base de datos
 		
 		switch (opcion) {
@@ -108,6 +111,15 @@ public class Menu {
 		    	enBD.modificarRegistro(consultaSQL);
 		    			    	
 			break;
+			
+		    case 3:
+		    	
+		    	System.out.println("Escribe el nombre de la carrera");
+		    	nombre = scan.next();
+		    	Carrera carrera = new Carrera();
+		    	carrera.setNombreCarrera(nombre);
+		    	carrera.insertarCarreraBBDD(nombre);
+		    	
 		}//switch
 		
 	}//lanzarMenuAdministrador()

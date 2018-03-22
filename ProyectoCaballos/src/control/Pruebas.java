@@ -19,13 +19,13 @@ public class Pruebas {
 	
 	public static void main(String[] args) {
 		
-		Carrera carrera = new Carrera(1);
+		/*Carrera carrera = new Carrera(1);
 		
 		carrera.apostar();
 		carrera.generarCarrera();
 		carrera.comprobarResultado();
 		
-		
+		*/
 		
 		
 	}

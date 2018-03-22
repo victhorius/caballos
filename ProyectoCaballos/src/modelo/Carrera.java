@@ -9,22 +9,39 @@ import java.util.Scanner;
 
 public class Carrera {
 
-	private int idCarrera;
+	private String nombreCarrera;
 	private HashSet<Integer> listaCaballos;
 	private int apostado;
 
-	public Carrera(int idCarrera) {
+	
+	/****************/
+	/**CONSTRUCTOR**/
+	/**************/
+	
+	public Carrera() {
 
-		this.idCarrera = idCarrera;
+		this.nombreCarrera = nombreCarrera;
 		listaCaballos = new HashSet<Integer>();
 		this.listaCaballos = listaCaballos;
 		this.apostado = apostado;
 		generarCarrera();
 	}
 
-	public int getIdCarrera() {
-		return idCarrera;
+	
+	/**********************/
+	/**GETTERS & SETTERS**/
+	/********************/
+	
+
+	public String getNombreCarrera() {
+		return nombreCarrera;
 	}
+
+
+	public void setNombreCarrera(String nombreCarrera) {
+		this.nombreCarrera = nombreCarrera;
+	}
+
 
 	public HashSet<Integer> getListaCaballos() {
 		return listaCaballos;
@@ -38,11 +55,17 @@ public class Carrera {
 		this.apostado = apostado;
 	}
 	
+	
+	/************/
+	/**MéTODOS**/
+	/**********/
+	
 	@Override
 	public String toString() {
-		return "Carrera [idCarrera=" + idCarrera + ", listaCaballos=" + listaCaballos + "]";
+		return "Carrera [ " + nombreCarrera + ", listaCaballos=" + listaCaballos + "]";
 	}
 
+	//Llama a un método que devuelve el número total de los caballos que hay en la base de datos y devuelve un número aleatorio dentro del rango
 	public int caballoAleatorio() {
 
 		int idCaballo = 0;
@@ -57,18 +80,44 @@ public class Carrera {
 
 		return idCaballo;
 
-	}
+	}//caballoAleatorio
 
+	
+	//Llama al método que genera un nº aleatorio y crea un Set con 5 caballos que conforman la carrera.
 	public void generarCarrera() {
-
+					
 		while (this.listaCaballos.size() < 5) {
-
 			listaCaballos.add(caballoAleatorio());
-
 		}
+		
+	}//generarCarrera
 
-	}
-
+	
+	//Inserta la carrera genrada en la Base de datos
+	public void insertarCarreraBBDD(String nombre) {
+		
+		EnlaceBBDDV2 enbd = new EnlaceBBDDV2();
+		ArrayList<Integer> arrListaCarrera = new ArrayList<Integer>();
+		
+		String query = "insert into carreras (nombreCarrera) values ('" + this.nombreCarrera + "')";
+		enbd.modificarRegistro(query);
+		
+				
+		for(int pos : this.listaCaballos) {		
+			arrListaCarrera.add(pos);			
+		}
+		
+		System.out.println(arrListaCarrera);
+		for(int pos : arrListaCarrera) {
+			query = "insert into listaCarreras (nombreCarrera, idCaballo) values" + "('" + this.nombreCarrera + "'," + pos + ");";
+			enbd.modificarRegistro(query);
+		}
+		System.out.println("Carrera generada");
+		
+	}//insertarCarrera
+	
+	
+	//El usuario elige un caballo al que quiere apostar dentro de la carrera y lo guarda en la variable apostado.
 	public void apostar() {
 
 		Scanner scan = new Scanner(System.in);
@@ -117,4 +166,4 @@ public class Carrera {
 		
 	}
 
-}//
+}//comprobarResultado
