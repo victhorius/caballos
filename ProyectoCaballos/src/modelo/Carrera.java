@@ -57,7 +57,7 @@ public class Carrera {
 	
 	
 	/************/
-	/**MéTODOS**/
+	/**Mï¿½TODOS**/
 	/**********/
 	
 	@Override
@@ -65,7 +65,7 @@ public class Carrera {
 		return "Carrera [ " + nombreCarrera + ", listaCaballos=" + listaCaballos + "]";
 	}
 
-	//Llama a un método que devuelve el número total de los caballos que hay en la base de datos y devuelve un número aleatorio dentro del rango
+	//Llama a un mï¿½todo que devuelve el nï¿½mero total de los caballos que hay en la base de datos y devuelve un nï¿½mero aleatorio dentro del rango
 	public int caballoAleatorio() {
 
 		int idCaballo = 0;
@@ -83,7 +83,7 @@ public class Carrera {
 	}//caballoAleatorio
 
 	
-	//Llama al método que genera un nº aleatorio y crea un Set con 5 caballos que conforman la carrera.
+	//Llama al mï¿½todo que genera un nï¿½ aleatorio y crea un Set con 5 caballos que conforman la carrera.
 	public void generarCarrera() {
 					
 		while (this.listaCaballos.size() < 5) {
@@ -125,7 +125,7 @@ public class Carrera {
 
 		System.out.println("Introduce el dorsal de tu apuesta");
 
-		System.out.println("Carrera: " + this.toString());
+		
 
 		apuesta = scan.nextInt();
 		
@@ -134,7 +134,7 @@ public class Carrera {
 	}//apostar
 	
 
-
+/*
 	public ArrayList<Integer> generarResultadoCarrera() {
 		
 		ArrayList<Integer> resultadosCarrera = new ArrayList<Integer>();
@@ -148,7 +148,9 @@ public class Carrera {
 		return resultadosCarrera;		
 	}//generarResultadosCarrera
 	
+	*/
 	
+	/*
 	public void comprobarResultado() {
 		
 		ArrayList<Integer> resultadosCarrera = new ArrayList<Integer>();
@@ -165,5 +167,7 @@ public class Carrera {
 		
 		
 	}
+	
+	*/
 
 }//comprobarResultado

@@ -10,7 +10,7 @@ import presentacion.LecturaEscritura;
 public class Menu {
 	
 	
-	/**Si se selecciona la opción 1 abre el menú de usuario.**/
+	/**Si se selecciona la opciï¿½n 1 abre el menï¿½ de usuario.**/
 	public void lanzarMenuUsuario() throws IOException {
 					
 		Scanner scan = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class Menu {
 		String consultaSQL = "";
 				
 		/****FIN AGREGADO****/
-		System.out.println("1. Consultar caballos.\n 2. Descargar lista de caballos\n ");
+		System.out.println("1. Consultar caballos.\n 2. Descargar lista de caballos\n 3. Apostar ");
 		
 		opcion = scan.nextInt();
 		
@@ -42,15 +42,59 @@ public class Menu {
 		
 		//Descargar lista de caballos
 		case 2:
+			
 			LecturaEscritura.descargarCaballos("Select * from caballos");
 			
 		break;
 		
 		//Apostar a un caballo
 		case 3:
-					
+			
+			String carrera = "";
+			int caballo = 0;
+			/*1.Muestra las carreras disponibles para apostar
+			  2. Usuario elige carrera
+			  3. Usuario elige caballo (se muestra una lista)
+			  4. actualiza la base de datos cambiando el campo de apostado de null a true 
+			  5. Simula la carrera y actualiza las posiciones
+			  6. Comprueba resultado
+			  
+			 
+			 */
+			
+			//1
+			System.out.println("Carreras disponibles:");
+			enBD.consultaCarreras("Select distinct nombreCarrera from listacarreras where posicion is null");
+			
+			//2
+			System.out.println("introduce carrera para mostrar caballos:");
+			carrera = scan.next();
+			
+			//3
+			ArrayList<Integer> posiciones = new ArrayList<Integer>();
+			posiciones=enBD.consultaCaballosCarrera("select idCaballo from listacarreras where nombreCarrera = '" + carrera + "';");
+			System.out.println("introduce dorsal del caballo:");
+			caballo = scan.nextInt();
+			
+						
+			//4
+			enBD.modificarRegistro("update listacarreras set apostado=true where idCaballo="+caballo);
+			
+			
+			//5
+			
+			Collections.shuffle(posiciones);
+			
+			for (int i = 0; i<5;i++) {
+				
+				int posicion=0;
+				posicion = posiciones.get(i);
+				
+				enBD.modificarRegistro("update listacarreras set posicion="+(i+1)+ "where idCaballo="+posicion+";");
+			}
+			
 
-
+			
 		break;
 		
 		}
@@ -58,7 +102,7 @@ public class Menu {
 	}//lanzarMenuUsuario()
 	
 	
-	/**Si se selecciona la opción 2 abre el menú de administrador**/
+	/**Si se selecciona la opciï¿½n 2 abre el menï¿½ de administrador**/
 	public void lanzarMenuAdministrador () throws IOException {
 		
 		String nombre;

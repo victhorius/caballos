@@ -20,7 +20,7 @@ public class EnlaceBBDDV2 {
 	
 	
 	/************************/
-	/***MÉTODOS GENERALES***/
+	/***Mï¿½TODOS GENERALES***/
 	/**********************/
 	
 	
@@ -47,7 +47,7 @@ public class EnlaceBBDDV2 {
 			if(sentencia != null) {
 				try {
 					sentencia.close();
-					System.out.println("Modificación correcta");
+					System.out.println("Modificaciï¿½n correcta");
 				}
 				catch(SQLException e) {					
 				}
@@ -155,6 +155,41 @@ public class EnlaceBBDDV2 {
 	}//contarCaballos
 		
 	
+	public void consultaCarreras(String sqlQuery) {
+		
+		ResultSet filas = seleccionarRegistros(sqlQuery);
+		
+		try {
+			while (filas.next()) {
+				System.out.println (filas.getString(1));
+			}
+		}
+		catch(SQLException e) {
+			System.out.println("Error de SQL: " + e.getMessage());
+		}
+		
+	}//consultaCarreras
+	
+	public ArrayList<Integer> consultaCaballosCarrera(String sqlQuery) {
+		
+		ArrayList<Integer> dorsales = new ArrayList<Integer>();
+		
+		ResultSet filas = seleccionarRegistros(sqlQuery);
+		int dorsal=0;
+		
+		try {
+			while (filas.next()) {
+				System.out.println ("dorsal caballo:"+filas.getInt(1));
+				dorsal = filas.getInt(1);
+				dorsales.add(dorsal);
+			}
+		}
+		catch(SQLException e) {
+			System.out.println("Error de SQL: " + e.getMessage());
+		}
+		return dorsales;
+		
+	}//consultaCaballosCarrera
 	
 	
 	
