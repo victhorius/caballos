@@ -25,14 +25,15 @@ public class Carrera {
 		this.listaCaballos = listaCaballos;
 		this.apostado = apostado;
 		generarCarrera();
+		
 	}
 
+	
 	
 	/**********************/
 	/**GETTERS & SETTERS**/
 	/********************/
 	
-
 	public String getNombreCarrera() {
 		return nombreCarrera;
 	}
@@ -56,8 +57,9 @@ public class Carrera {
 	}
 	
 	
+	
 	/************/
-	/**M�TODOS**/
+	/**METODOS**/
 	/**********/
 	
 	@Override
@@ -65,7 +67,8 @@ public class Carrera {
 		return "Carrera [ " + nombreCarrera + ", listaCaballos=" + listaCaballos + "]";
 	}
 
-	//Llama a un m�todo que devuelve el n�mero total de los caballos que hay en la base de datos y devuelve un n�mero aleatorio dentro del rango
+	
+	//Llama a un metodo que devuelve el numero total de los caballos que hay en la base de datos y devuelve un numero aleatorio dentro del rango
 	public int caballoAleatorio() {
 
 		int idCaballo = 0;
@@ -83,7 +86,7 @@ public class Carrera {
 	}//caballoAleatorio
 
 	
-	//Llama al m�todo que genera un n� aleatorio y crea un Set con 5 caballos que conforman la carrera.
+	//Llama al metodo que genera un numero aleatorio y crea un Set con 5 caballos que conforman la carrera.
 	public void generarCarrera() {
 					
 		while (this.listaCaballos.size() < 5) {
@@ -96,7 +99,7 @@ public class Carrera {
 	//Inserta la carrera genrada en la Base de datos
 	public void insertarCarreraBBDD(String nombre) {
 		
-		EnlaceBBDDV2 enbd = new EnlaceBBDDV2();
+		EnlaceBBDD enbd = new EnlaceBBDD();
 		ArrayList<Integer> arrListaCarrera = new ArrayList<Integer>();
 		
 		String query = "insert into carreras (nombreCarrera) values ('" + this.nombreCarrera + "')";
@@ -124,50 +127,56 @@ public class Carrera {
 		int apuesta = 0;
 
 		System.out.println("Introduce el dorsal de tu apuesta");
-
-		
-
 		apuesta = scan.nextInt();
-		
 		this.setApostado(apuesta);
 
 	}//apostar
 	
 
-/*
+
 	public ArrayList<Integer> generarResultadoCarrera() {
 		
 		ArrayList<Integer> resultadosCarrera = new ArrayList<Integer>();
+		EnlaceBBDD enBD = new EnlaceBBDD();
 		
-		for(int pos : this.listaCaballos) {
-			
+		
+		for(int pos : this.listaCaballos) {			
 			Collections.shuffle(generarResultadoCarrera());
-			resultadosCarrera.add(pos);
+			resultadosCarrera.add(pos);			
+		}
+		
+		//Hace un insert de los datos del resultado en la BBDD
+		for (int i = 0; i < 5; i++) {
 			
-		}						
+			int posicion=0;
+			posicion = resultadosCarrera.get(i);
+			
+			enBD.modificarRegistro("update listacarreras set posicion="+(i+1)+ "where idCaballo="+posicion+";");
+		}
+		
 		return resultadosCarrera;		
 	}//generarResultadosCarrera
+
 	
-	*/
-	
-	/*
-	public void comprobarResultado() {
+	public void comprobarResultadoCarrera(String carrera) {
 		
 		ArrayList<Integer> resultadosCarrera = new ArrayList<Integer>();
+		EnlaceBBDD enBD = new EnlaceBBDD();
+		//int apostado = enBD.consultaCaballosCarrera("select apostado from listacarreras where nombreCarrera = '" + carrera + "';");
+		
 		resultadosCarrera = generarResultadoCarrera();
 		
+		
 		System.out.println("Resultado de la carrera: " + resultadosCarrera);
-		System.out.println("Tu apuesta: " + this.apostado);
+		System.out.println("Tu apuesta: " + resultadosCarrera.get(apostado));
 		
 		if(this.apostado == resultadosCarrera.get(0)) {
 			System.out.println("Enhorabuena, has ganado la apuesta!");
 		} else {
-			System.out.println("Esta vez no pudo ser, sigue intentándolo");
-		}
+			System.out.println("Esta vez no pudo ser, sigue intentandolo");
+		}		
 		
-		
-	}
+	}//comprobarResultado*/
 	
-	*/
-
-}//comprobarResultado
+	
+}//Carrera

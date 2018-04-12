@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 
-public class EnlaceBBDDV2 {
+public class EnlaceBBDD {
 
 	private static final String DRIVER="com.mysql.jdbc.Driver";
 	private static final String URL="jdbc:mysql://localhost:3306/caballos";
@@ -20,7 +20,7 @@ public class EnlaceBBDDV2 {
 	
 	
 	/************************/
-	/***M�TODOS GENERALES***/
+	/***METODOS GENERALES***/
 	/**********************/
 	
 	
@@ -47,7 +47,7 @@ public class EnlaceBBDDV2 {
 			if(sentencia != null) {
 				try {
 					sentencia.close();
-					System.out.println("Modificaci�n correcta");
+					System.out.println("Modificacion correcta");
 				}
 				catch(SQLException e) {					
 				}
@@ -87,9 +87,9 @@ public class EnlaceBBDDV2 {
 	}//seleccionarRegistros
 	
 	
-	/****/
+	/*********************************/
 	/**METODOS ESPECIFICOS CONSULTA**/
-	/****/
+	/*******************************/
 	
 	
 	public void consultaTodosCaballos (String sqlQuery) {

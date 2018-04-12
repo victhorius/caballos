@@ -33,7 +33,7 @@ public class Principal {
 		LecturaEscritura.leerCaballo();*/
 		
 		EnlaceBD enlaceBD = new EnlaceBD();
-		EnlaceBBDDV2 enBD = new EnlaceBBDDV2();
+		EnlaceBBDD enBD = new EnlaceBBDD();
 		
 		
 		//enlaceBD.insertarCaballo(caballo1.getIdCaballo(), caballo1.getNombreCaballo(), caballo1.getRaza(), caballo1.getColor());
